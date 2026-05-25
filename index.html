@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Trusted AI Assistant</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Trusted AI Assistant</h1>
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="question"
+                placeholder="Ask a question..."
+                required
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+        {% if question %}
+
+            <div class="card question-box">
+
+                <h2>Your Question</h2>
+
+                <p>{{ question }}</p>
+
+            </div>
+
+        {% endif %}
+
+        {% if answer %}
+
+            <h2 class="results-title">
+                Trusted Results
+            </h2>
+
+            {% for item in answer %}
+
+                <div class="card source-box">
+
+                    <h3>{{ item.title }}</h3>
+
+                    <p>{{ item.summary }}</p>
+
+                    <a href="{{ item.link }}" target="_blank">
+                        Open Source
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            {% if question %}
+
+                <div class="card">
+
+                    <p>No trusted results found.</p>
+
+                </div>
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
